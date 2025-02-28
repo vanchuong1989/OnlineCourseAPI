@@ -1,0 +1,2281 @@
+2025-02-27 21:27:33.369 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 21:27:33.498 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 21:27:33.555 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 21:27:33.561 +07:00 [INF] Hosting environment: Development
+2025-02-27 21:27:33.565 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 21:27:34.054 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 21:27:34.173 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 21:27:34.403 +07:00 [INF] Response: 200: <!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+    <style>
+
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="swagger-ui"></div>
+
+    <!-- Workaround for https://github.com/swagger-api/swagger-editor/issues/1371 -->
+    <script>
+        if (window.navigator.userAgent.indexOf("Edge") > -1) {
+            console.log("Removing native Edge fetch in favor of swagger-ui's polyfill")
+            window.fetch = undefined;
+        }
+    </script>
+
+    <script src="./swagger-ui-bundle.js"></script>
+    <script src="./swagger-ui-standalone-preset.js"></script>
+    <script>
+        /* Source: https://gist.github.com/lamberta/3768814
+         * Parse a string function definition and return a function object. Does not use eval.
+         * @param {string} str
+         * @return {function}
+         *
+         * Example:
+         *  var f = function (x, y) { return x * y; };
+         *  var g = parseFunction(f.toString());
+         *  g(33, 3); //=> 99
+         */
+        function parseFunction(str) {
+            if (!str) return void (0);
+
+            var fn_body_idx = str.indexOf('{'),
+                fn_body = str.substring(fn_body_idx + 1, str.lastIndexOf('}')),
+                fn_declare = str.substring(0, fn_body_idx),
+                fn_params = fn_declare.substring(fn_declare.indexOf('(') + 1, fn_declare.lastIndexOf(')')),
+                args = fn_params.split(',');
+
+            args.push(fn_body);
+
+            function Fn() {
+                return Function.apply(this, args);
+            }
+            Fn.prototype = Function.prototype;
+
+            return new Fn();
+        }
+
+        window.onload = function () {
+            var configObject = JSON.parse('{"urls":[{"url":"v1/swagger.json","name":"OnlineCourse.API v1"}],"deepLinking":false,"persistAuthorization":false,"displayOperationId":false,"defaultModelsExpandDepth":1,"defaultModelExpandDepth":1,"defaultModelRendering":"example","displayRequestDuration":false,"docExpansion":"list","showExtensions":false,"showCommonExtensions":false,"supportedSubmitMethods":["get","put","post","delete","options","head","patch","trace"],"tryItOutEnabled":false}');
+            var oauthConfigObject = JSON.parse('{"scopeSeparator":" ","scopes":[],"useBasicAuthenticationWithAccessCodeGrant":false,"usePkceWithAuthorizationCodeGrant":false}');
+
+            // Workaround for https://github.com/swagger-api/swagger-ui/issues/5945
+            configObject.urls.forEach(function (item) {
+                if (item.url.startsWith("http") || item.url.startsWith("/")) return;
+                item.url = window.location.href.replace("index.html", item.url).split('#')[0];
+            });
+
+            // If validatorUrl is not explicitly provided, disable the feature by setting to null
+            if (!configObject.hasOwnProperty("validatorUrl"))
+                configObject.validatorUrl = null
+
+            // If oauth2RedirectUrl isn't specified, use the built-in default
+            if (!configObject.hasOwnProperty("oauth2RedirectUrl"))
+                configObject.oauth2RedirectUrl = (new URL("oauth2-redirect.html", window.location.href)).href;
+
+            // Apply mandatory parameters
+            configObject.dom_id = "#swagger-ui";
+            configObject.presets = [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset];
+            configObject.layout = "StandaloneLayout";
+
+            // Parse and add interceptor functions
+            var interceptors = JSON.parse('{"RequestInterceptorFunction":null,"ResponseInterceptorFunction":null}');
+            if (interceptors.RequestInterceptorFunction)
+                configObject.requestInterceptor = parseFunction(interceptors.RequestInterceptorFunction);
+            if (interceptors.ResponseInterceptorFunction)
+                configObject.responseInterceptor = parseFunction(interceptors.ResponseInterceptorFunction);
+
+            // Begin Swagger UI call region
+
+            const ui = SwaggerUIBundle(configObject);
+
+            ui.initOAuth(oauthConfigObject);
+
+            // End Swagger UI call region
+
+            window.ui = ui
+        }
+    </script>
+</body>
+</html>
+
+2025-02-27 21:27:34.484 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 200 null text/html;charset=utf-8 444.6197ms
+2025-02-27 21:27:34.529 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-27 21:27:34.557 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/_framework/aspnetcore-browser-refresh.js - 200 13768 application/javascript; charset=utf-8 28.6895ms
+2025-02-27 21:27:36.153 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/_vs/browserLink - null null
+2025-02-27 21:27:36.335 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/_vs/browserLink - 200 null text/javascript; charset=UTF-8 183.0135ms
+2025-02-27 21:27:36.835 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/v1/swagger.json - null null
+2025-02-27 21:27:36.867 +07:00 [INF] Request: GET /swagger/v1/swagger.json
+2025-02-27 21:27:37.165 +07:00 [INF] Response: 200: {
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OnlineCourse.API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Course": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Course/Category/{categoryId}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Course/Detail/{courseId}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CourseCategory/{id}": {
+      "get": {
+        "tags": [
+          "CourseCategory"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CourseCategory": {
+      "get": {
+        "tags": [
+          "CourseCategory"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CourseCategoryModel": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseModel": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "courseType": {
+            "type": "string",
+            "nullable": true
+          },
+          "seatsAvailable": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "duration": {
+            "type": "number",
+            "format": "double"
+          },
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "instructorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "$ref": "#/components/schemas/CourseCategoryModel"
+          },
+          "userRating": {
+            "$ref": "#/components/schemas/UserRatingModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRatingModel": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "averageRating": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalRating": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
+2025-02-27 21:27:37.203 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 368.1389ms
+2025-02-27 21:31:42.267 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 21:31:42.327 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 21:31:42.383 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 21:31:42.387 +07:00 [INF] Hosting environment: Development
+2025-02-27 21:31:42.391 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 21:31:44.023 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 21:31:44.099 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 21:31:44.155 +07:00 [INF] Response: 200: <!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+    <style>
+
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="swagger-ui"></div>
+
+    <!-- Workaround for https://github.com/swagger-api/swagger-editor/issues/1371 -->
+    <script>
+        if (window.navigator.userAgent.indexOf("Edge") > -1) {
+            console.log("Removing native Edge fetch in favor of swagger-ui's polyfill")
+            window.fetch = undefined;
+        }
+    </script>
+
+    <script src="./swagger-ui-bundle.js"></script>
+    <script src="./swagger-ui-standalone-preset.js"></script>
+    <script>
+        /* Source: https://gist.github.com/lamberta/3768814
+         * Parse a string function definition and return a function object. Does not use eval.
+         * @param {string} str
+         * @return {function}
+         *
+         * Example:
+         *  var f = function (x, y) { return x * y; };
+         *  var g = parseFunction(f.toString());
+         *  g(33, 3); //=> 99
+         */
+        function parseFunction(str) {
+            if (!str) return void (0);
+
+            var fn_body_idx = str.indexOf('{'),
+                fn_body = str.substring(fn_body_idx + 1, str.lastIndexOf('}')),
+                fn_declare = str.substring(0, fn_body_idx),
+                fn_params = fn_declare.substring(fn_declare.indexOf('(') + 1, fn_declare.lastIndexOf(')')),
+                args = fn_params.split(',');
+
+            args.push(fn_body);
+
+            function Fn() {
+                return Function.apply(this, args);
+            }
+            Fn.prototype = Function.prototype;
+
+            return new Fn();
+        }
+
+        window.onload = function () {
+            var configObject = JSON.parse('{"urls":[{"url":"v1/swagger.json","name":"OnlineCourse.API v1"}],"deepLinking":false,"persistAuthorization":false,"displayOperationId":false,"defaultModelsExpandDepth":1,"defaultModelExpandDepth":1,"defaultModelRendering":"example","displayRequestDuration":false,"docExpansion":"list","showExtensions":false,"showCommonExtensions":false,"supportedSubmitMethods":["get","put","post","delete","options","head","patch","trace"],"tryItOutEnabled":false}');
+            var oauthConfigObject = JSON.parse('{"scopeSeparator":" ","scopes":[],"useBasicAuthenticationWithAccessCodeGrant":false,"usePkceWithAuthorizationCodeGrant":false}');
+
+            // Workaround for https://github.com/swagger-api/swagger-ui/issues/5945
+            configObject.urls.forEach(function (item) {
+                if (item.url.startsWith("http") || item.url.startsWith("/")) return;
+                item.url = window.location.href.replace("index.html", item.url).split('#')[0];
+            });
+
+            // If validatorUrl is not explicitly provided, disable the feature by setting to null
+            if (!configObject.hasOwnProperty("validatorUrl"))
+                configObject.validatorUrl = null
+
+            // If oauth2RedirectUrl isn't specified, use the built-in default
+            if (!configObject.hasOwnProperty("oauth2RedirectUrl"))
+                configObject.oauth2RedirectUrl = (new URL("oauth2-redirect.html", window.location.href)).href;
+
+            // Apply mandatory parameters
+            configObject.dom_id = "#swagger-ui";
+            configObject.presets = [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset];
+            configObject.layout = "StandaloneLayout";
+
+            // Parse and add interceptor functions
+            var interceptors = JSON.parse('{"RequestInterceptorFunction":null,"ResponseInterceptorFunction":null}');
+            if (interceptors.RequestInterceptorFunction)
+                configObject.requestInterceptor = parseFunction(interceptors.RequestInterceptorFunction);
+            if (interceptors.ResponseInterceptorFunction)
+                configObject.responseInterceptor = parseFunction(interceptors.ResponseInterceptorFunction);
+
+            // Begin Swagger UI call region
+
+            const ui = SwaggerUIBundle(configObject);
+
+            ui.initOAuth(oauthConfigObject);
+
+            // End Swagger UI call region
+
+            window.ui = ui
+        }
+    </script>
+</body>
+</html>
+
+2025-02-27 21:31:44.186 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 200 null text/html;charset=utf-8 184.4325ms
+2025-02-27 21:31:44.280 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-27 21:31:44.292 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/_framework/aspnetcore-browser-refresh.js - 200 13768 application/javascript; charset=utf-8 11.7992ms
+2025-02-27 21:31:44.726 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/_vs/browserLink - null null
+2025-02-27 21:31:44.778 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/_vs/browserLink - 200 null text/javascript; charset=UTF-8 52.1009ms
+2025-02-27 21:31:46.502 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/v1/swagger.json - null null
+2025-02-27 21:31:46.512 +07:00 [INF] Request: GET /swagger/v1/swagger.json
+2025-02-27 21:31:46.634 +07:00 [INF] Response: 200: {
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OnlineCourse.API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Course": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Course/Category/{categoryId}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Course/Detail/{courseId}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CourseCategory/{id}": {
+      "get": {
+        "tags": [
+          "CourseCategory"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CourseCategory": {
+      "get": {
+        "tags": [
+          "CourseCategory"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CourseCategoryModel": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseModel": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "courseType": {
+            "type": "string",
+            "nullable": true
+          },
+          "seatsAvailable": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "duration": {
+            "type": "number",
+            "format": "double"
+          },
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "instructorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "$ref": "#/components/schemas/CourseCategoryModel"
+          },
+          "userRating": {
+            "$ref": "#/components/schemas/UserRatingModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRatingModel": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "averageRating": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalRating": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
+2025-02-27 21:31:46.651 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 152.2783ms
+2025-02-27 21:31:49.737 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/api/Course - null null
+2025-02-27 21:31:49.750 +07:00 [INF] Request: GET /api/Course
+2025-02-27 21:31:49.762 +07:00 [INF] Executing endpoint 'OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API)'
+2025-02-27 21:31:49.788 +07:00 [INF] Route matched with {action = "GetAllCourses", controller = "Course"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[OnlineCourse.Core.Models.CourseModel]]] GetAllCoursesAsync() on controller OnlineCourse.API.Controllers.CourseController (OnlineCourse.API).
+2025-02-27 21:31:49.925 +07:00 [INF] Executing action method OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API) - Validation state: "Valid"
+2025-02-27 21:31:50.402 +07:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-02-27 21:31:53.070 +07:00 [INF] Executed DbCommand (982ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CourseId], [c].[Title], [c].[Description], [c].[Price], [c].[CourseType], [c].[SeatsAvailable], [c].[Duration], [c].[CategoryId], [c].[InstructorId], [c].[StartDate], [c].[EndDate], [c0].[CategoryId], [c0].[CategoryName], [c0].[Description], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Review] AS [r]
+        WHERE [c].[CourseId] = [r].[CourseId]) THEN CONVERT(decimal(18, 2), (
+        SELECT AVG(CAST([r0].[Rating] AS float))
+        FROM [Review] AS [r0]
+        WHERE [c].[CourseId] = [r0].[CourseId]))
+    ELSE 0.0
+END AS [AverageRating], (
+    SELECT COUNT(*)
+    FROM [Review] AS [r1]
+    WHERE [c].[CourseId] = [r1].[CourseId]) AS [TotalRating]
+FROM [Course] AS [c]
+INNER JOIN [CourseCategory] AS [c0] ON [c].[CategoryId] = [c0].[CategoryId]
+2025-02-27 21:31:53.161 +07:00 [INF] Executed action method OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 3226.9315ms.
+2025-02-27 21:31:53.176 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[OnlineCourse.Core.Models.CourseModel, OnlineCourse.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-27 21:31:53.200 +07:00 [INF] Executed action OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API) in 3404.003ms
+2025-02-27 21:31:53.207 +07:00 [INF] Executed endpoint 'OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API)'
+2025-02-27 21:31:53.216 +07:00 [INF] Response: 200: [{"courseId":1,"title":"Angular Full Course","description":"Comprehensive course covering Angular from basics to advanced topics.","price":199.99,"courseType":"Online","seatsAvailable":50,"duration":40.50,"categoryId":1,"instructorId":1,"startDate":"2024-09-01T00:00:00","endDate":"2024-09-30T00:00:00","thumbnail":null,"category":{"categoryId":1,"categoryName":"Programming","description":"Courses related to software development and programming languages."},"userRating":{"courseId":1,"averageRating":5.00,"totalRating":1}},{"courseId":2,"title":"Introduction to Data Science","description":"Learn the fundamentals of data science with hands-on examples.","price":149.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":2,"instructorId":1,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":2,"averageRating":4.00,"totalRating":1}},{"courseId":3,"title":"Graphic Design Mastery","description":"Master the art of graphic design with practical projects.","price":129.99,"courseType":"Offline","seatsAvailable":null,"duration":25.00,"categoryId":3,"instructorId":1,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":3,"averageRating":5.00,"totalRating":1}},{"courseId":4,"title":"Full Stack Web Development","description":"Learn to build web applications from scratch using modern technologies.","price":249.99,"courseType":"Online","seatsAvailable":40,"duration":50.00,"categoryId":4,"instructorId":2,"startDate":"2024-10-01T00:00:00","endDate":"2024-11-30T00:00:00","thumbnail":null,"category":{"categoryId":4,"categoryName":"Web Development","description":"Courses focusing on front-end and back-end web development."},"userRating":{"courseId":4,"averageRating":5.00,"totalRating":1}},{"courseId":5,"title":"Ethical Hacking Basics","description":"Introduction to ethical hacking and cybersecurity fundamentals.","price":199.99,"courseType":"Online","seatsAvailable":35,"duration":40.00,"categoryId":5,"instructorId":2,"startDate":"2024-10-01T00:00:00","endDate":"2024-11-30T00:00:00","thumbnail":null,"category":{"categoryId":5,"categoryName":"Cybersecurity","description":"Courses covering security practices and ethical hacking."},"userRating":{"courseId":5,"averageRating":4.00,"totalRating":1}},{"courseId":6,"title":"Agile Project Management","description":"Master the principles of Agile and Scrum.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":6,"instructorId":2,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":6,"categoryName":"Project Management","description":"Courses on managing projects, teams, and resources effectively."},"userRating":{"courseId":6,"averageRating":5.00,"totalRating":1}},{"courseId":7,"title":"Digital Marketing Mastery","description":"Become an expert in digital marketing with this comprehensive course.","price":219.99,"courseType":"Online","seatsAvailable":30,"duration":35.00,"categoryId":7,"instructorId":3,"startDate":"2024-11-01T00:00:00","endDate":"2024-12-01T00:00:00","thumbnail":null,"category":{"categoryId":7,"categoryName":"Marketing","description":"Courses focused on digital marketing, SEO, and social media marketing."},"userRating":{"courseId":7,"averageRating":5.00,"totalRating":1}},{"courseId":8,"title":"Personal Finance Essentials","description":"Learn how to manage your finances and make smart investments.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":25.00,"categoryId":8,"instructorId":3,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":8,"categoryName":"Finance","description":"Courses covering investment, personal finance, and accounting."},"userRating":{"courseId":8,"averageRating":4.00,"totalRating":1}},{"courseId":9,"title":"Yoga for Beginners","description":"Start your journey to physical and mental wellness with yoga.","price":99.99,"courseType":"Online","seatsAvailable":20,"duration":15.00,"categoryId":9,"instructorId":3,"startDate":"2024-11-01T00:00:00","endDate":"2024-11-15T00:00:00","thumbnail":null,"category":{"categoryId":9,"categoryName":"Health & Fitness","description":"Courses on physical fitness, mental well-being, and nutrition."},"userRating":{"courseId":9,"averageRating":5.00,"totalRating":1}},{"courseId":10,"title":"Full Stack Web Development","description":"Learn to build complete web applications using HTML, CSS, JavaScript, and backend technologies.","price":249.99,"courseType":"Online","seatsAvailable":75,"duration":60.00,"categoryId":1,"instructorId":1,"startDate":"2024-10-01T00:00:00","endDate":"2024-12-01T00:00:00","thumbnail":null,"category":{"categoryId":1,"categoryName":"Programming","description":"Courses related to software development and programming languages."},"userRating":{"courseId":10,"averageRating":0.00,"totalRating":0}},{"courseId":11,"title":"Advanced Data Science Techniques","description":"Dive deep into advanced techniques in data science, including deep learning and AI.","price":299.99,"courseType":"Online","seatsAvailable":50,"duration":45.00,"categoryId":2,"instructorId":1,"startDate":"2024-11-01T00:00:00","endDate":"2024-12-31T00:00:00","thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":11,"averageRating":0.00,"totalRating":0}},{"courseId":12,"title":"UI/UX Design Fundamentals","description":"Learn the essentials of user interface and user experience design.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":3,"instructorId":1,"startDate":"2024-10-15T00:00:00","endDate":"2024-11-15T00:00:00","thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":12,"averageRating":0.00,"totalRating":0}},{"courseId":13,"title":"Python for Data Analysis","description":"Learn how to use Python for data analysis, visualization, and statistical modeling.","price":159.99,"courseType":"Online","seatsAvailable":60,"duration":35.00,"categoryId":2,"instructorId":1,"startDate":"2024-09-15T00:00:00","endDate":"2024-10-15T00:00:00","thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":13,"averageRating":0.00,"totalRating":0}},{"courseId":14,"title":"Digital Marketing Masterclass","description":"Comprehensive guide to mastering digital marketing strategies.","price":199.99,"courseType":"Online","seatsAvailable":40,"duration":25.00,"categoryId":3,"instructorId":1,"startDate":"2024-12-01T00:00:00","endDate":"2024-12-31T00:00:00","thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":14,"averageRating":0.00,"totalRating":0}}]
+2025-02-27 21:31:53.250 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/api/Course - 200 null application/json; charset=utf-8 3513.5895ms
+2025-02-27 21:33:17.493 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 21:33:17.547 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 21:33:17.607 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 21:33:17.651 +07:00 [INF] Hosting environment: Development
+2025-02-27 21:33:17.698 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 21:33:18.570 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 21:33:18.738 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 21:33:18.802 +07:00 [INF] Response: 200: <!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+    <style>
+
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="swagger-ui"></div>
+
+    <!-- Workaround for https://github.com/swagger-api/swagger-editor/issues/1371 -->
+    <script>
+        if (window.navigator.userAgent.indexOf("Edge") > -1) {
+            console.log("Removing native Edge fetch in favor of swagger-ui's polyfill")
+            window.fetch = undefined;
+        }
+    </script>
+
+    <script src="./swagger-ui-bundle.js"></script>
+    <script src="./swagger-ui-standalone-preset.js"></script>
+    <script>
+        /* Source: https://gist.github.com/lamberta/3768814
+         * Parse a string function definition and return a function object. Does not use eval.
+         * @param {string} str
+         * @return {function}
+         *
+         * Example:
+         *  var f = function (x, y) { return x * y; };
+         *  var g = parseFunction(f.toString());
+         *  g(33, 3); //=> 99
+         */
+        function parseFunction(str) {
+            if (!str) return void (0);
+
+            var fn_body_idx = str.indexOf('{'),
+                fn_body = str.substring(fn_body_idx + 1, str.lastIndexOf('}')),
+                fn_declare = str.substring(0, fn_body_idx),
+                fn_params = fn_declare.substring(fn_declare.indexOf('(') + 1, fn_declare.lastIndexOf(')')),
+                args = fn_params.split(',');
+
+            args.push(fn_body);
+
+            function Fn() {
+                return Function.apply(this, args);
+            }
+            Fn.prototype = Function.prototype;
+
+            return new Fn();
+        }
+
+        window.onload = function () {
+            var configObject = JSON.parse('{"urls":[{"url":"v1/swagger.json","name":"OnlineCourse.API v1"}],"deepLinking":false,"persistAuthorization":false,"displayOperationId":false,"defaultModelsExpandDepth":1,"defaultModelExpandDepth":1,"defaultModelRendering":"example","displayRequestDuration":false,"docExpansion":"list","showExtensions":false,"showCommonExtensions":false,"supportedSubmitMethods":["get","put","post","delete","options","head","patch","trace"],"tryItOutEnabled":false}');
+            var oauthConfigObject = JSON.parse('{"scopeSeparator":" ","scopes":[],"useBasicAuthenticationWithAccessCodeGrant":false,"usePkceWithAuthorizationCodeGrant":false}');
+
+            // Workaround for https://github.com/swagger-api/swagger-ui/issues/5945
+            configObject.urls.forEach(function (item) {
+                if (item.url.startsWith("http") || item.url.startsWith("/")) return;
+                item.url = window.location.href.replace("index.html", item.url).split('#')[0];
+            });
+
+            // If validatorUrl is not explicitly provided, disable the feature by setting to null
+            if (!configObject.hasOwnProperty("validatorUrl"))
+                configObject.validatorUrl = null
+
+            // If oauth2RedirectUrl isn't specified, use the built-in default
+            if (!configObject.hasOwnProperty("oauth2RedirectUrl"))
+                configObject.oauth2RedirectUrl = (new URL("oauth2-redirect.html", window.location.href)).href;
+
+            // Apply mandatory parameters
+            configObject.dom_id = "#swagger-ui";
+            configObject.presets = [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset];
+            configObject.layout = "StandaloneLayout";
+
+            // Parse and add interceptor functions
+            var interceptors = JSON.parse('{"RequestInterceptorFunction":null,"ResponseInterceptorFunction":null}');
+            if (interceptors.RequestInterceptorFunction)
+                configObject.requestInterceptor = parseFunction(interceptors.RequestInterceptorFunction);
+            if (interceptors.ResponseInterceptorFunction)
+                configObject.responseInterceptor = parseFunction(interceptors.ResponseInterceptorFunction);
+
+            // Begin Swagger UI call region
+
+            const ui = SwaggerUIBundle(configObject);
+
+            ui.initOAuth(oauthConfigObject);
+
+            // End Swagger UI call region
+
+            window.ui = ui
+        }
+    </script>
+</body>
+</html>
+
+2025-02-27 21:33:18.857 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 200 null text/html;charset=utf-8 302.1917ms
+2025-02-27 21:33:18.902 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-27 21:33:18.924 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/_framework/aspnetcore-browser-refresh.js - 200 13768 application/javascript; charset=utf-8 23.754ms
+2025-02-27 21:33:19.204 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/_vs/browserLink - null null
+2025-02-27 21:33:19.256 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/_vs/browserLink - 200 null text/javascript; charset=UTF-8 52.1812ms
+2025-02-27 21:33:20.342 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/v1/swagger.json - null null
+2025-02-27 21:33:20.355 +07:00 [INF] Request: GET /swagger/v1/swagger.json
+2025-02-27 21:33:20.485 +07:00 [INF] Response: 200: {
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OnlineCourse.API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Course": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Course/Category/{categoryId}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Course/Detail/{courseId}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CourseCategory/{id}": {
+      "get": {
+        "tags": [
+          "CourseCategory"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CourseCategory": {
+      "get": {
+        "tags": [
+          "CourseCategory"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CourseCategoryModel": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CourseModel": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "courseType": {
+            "type": "string",
+            "nullable": true
+          },
+          "seatsAvailable": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "duration": {
+            "type": "number",
+            "format": "double"
+          },
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "instructorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "$ref": "#/components/schemas/CourseCategoryModel"
+          },
+          "userRating": {
+            "$ref": "#/components/schemas/UserRatingModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRatingModel": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "averageRating": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalRating": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
+2025-02-27 21:33:20.507 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 165.7293ms
+2025-02-27 21:33:30.764 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/api/Course - null null
+2025-02-27 21:33:30.779 +07:00 [INF] Request: GET /api/Course
+2025-02-27 21:33:30.793 +07:00 [INF] Executing endpoint 'OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API)'
+2025-02-27 21:33:30.819 +07:00 [INF] Route matched with {action = "GetAllCourses", controller = "Course"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[OnlineCourse.Core.Models.CourseModel]]] GetAllCoursesAsync() on controller OnlineCourse.API.Controllers.CourseController (OnlineCourse.API).
+2025-02-27 21:33:30.998 +07:00 [INF] Executing action method OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API) - Validation state: "Valid"
+2025-02-27 21:33:31.531 +07:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-02-27 21:33:33.874 +07:00 [INF] Executed DbCommand (774ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CourseId], [c].[Title], [c].[Description], [c].[Price], [c].[CourseType], [c].[SeatsAvailable], [c].[Duration], [c].[CategoryId], [c].[InstructorId], [c].[StartDate], [c].[EndDate], [c0].[CategoryId], [c0].[CategoryName], [c0].[Description], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Review] AS [r]
+        WHERE [c].[CourseId] = [r].[CourseId]) THEN CONVERT(decimal(18, 2), (
+        SELECT AVG(CAST([r0].[Rating] AS float))
+        FROM [Review] AS [r0]
+        WHERE [c].[CourseId] = [r0].[CourseId]))
+    ELSE 0.0
+END AS [AverageRating], (
+    SELECT COUNT(*)
+    FROM [Review] AS [r1]
+    WHERE [c].[CourseId] = [r1].[CourseId]) AS [TotalRating]
+FROM [Course] AS [c]
+INNER JOIN [CourseCategory] AS [c0] ON [c].[CategoryId] = [c0].[CategoryId]
+2025-02-27 21:33:33.965 +07:00 [INF] Executed action method OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2913.1301ms.
+2025-02-27 21:33:33.982 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[OnlineCourse.Core.Models.CourseModel, OnlineCourse.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-27 21:33:34.006 +07:00 [INF] Executed action OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API) in 3174.9517ms
+2025-02-27 21:33:34.068 +07:00 [INF] Executed endpoint 'OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API)'
+2025-02-27 21:33:34.136 +07:00 [INF] Response: 200: [{"courseId":1,"title":"Angular Full Course","description":"Comprehensive course covering Angular from basics to advanced topics.","price":199.99,"courseType":"Online","seatsAvailable":50,"duration":40.50,"categoryId":1,"instructorId":1,"startDate":"2024-09-01T00:00:00","endDate":"2024-09-30T00:00:00","thumbnail":null,"category":{"categoryId":1,"categoryName":"Programming","description":"Courses related to software development and programming languages."},"userRating":{"courseId":1,"averageRating":5.00,"totalRating":1}},{"courseId":2,"title":"Introduction to Data Science","description":"Learn the fundamentals of data science with hands-on examples.","price":149.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":2,"instructorId":1,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":2,"averageRating":4.00,"totalRating":1}},{"courseId":3,"title":"Graphic Design Mastery","description":"Master the art of graphic design with practical projects.","price":129.99,"courseType":"Offline","seatsAvailable":null,"duration":25.00,"categoryId":3,"instructorId":1,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":3,"averageRating":5.00,"totalRating":1}},{"courseId":4,"title":"Full Stack Web Development","description":"Learn to build web applications from scratch using modern technologies.","price":249.99,"courseType":"Online","seatsAvailable":40,"duration":50.00,"categoryId":4,"instructorId":2,"startDate":"2024-10-01T00:00:00","endDate":"2024-11-30T00:00:00","thumbnail":null,"category":{"categoryId":4,"categoryName":"Web Development","description":"Courses focusing on front-end and back-end web development."},"userRating":{"courseId":4,"averageRating":5.00,"totalRating":1}},{"courseId":5,"title":"Ethical Hacking Basics","description":"Introduction to ethical hacking and cybersecurity fundamentals.","price":199.99,"courseType":"Online","seatsAvailable":35,"duration":40.00,"categoryId":5,"instructorId":2,"startDate":"2024-10-01T00:00:00","endDate":"2024-11-30T00:00:00","thumbnail":null,"category":{"categoryId":5,"categoryName":"Cybersecurity","description":"Courses covering security practices and ethical hacking."},"userRating":{"courseId":5,"averageRating":4.00,"totalRating":1}},{"courseId":6,"title":"Agile Project Management","description":"Master the principles of Agile and Scrum.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":6,"instructorId":2,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":6,"categoryName":"Project Management","description":"Courses on managing projects, teams, and resources effectively."},"userRating":{"courseId":6,"averageRating":5.00,"totalRating":1}},{"courseId":7,"title":"Digital Marketing Mastery","description":"Become an expert in digital marketing with this comprehensive course.","price":219.99,"courseType":"Online","seatsAvailable":30,"duration":35.00,"categoryId":7,"instructorId":3,"startDate":"2024-11-01T00:00:00","endDate":"2024-12-01T00:00:00","thumbnail":null,"category":{"categoryId":7,"categoryName":"Marketing","description":"Courses focused on digital marketing, SEO, and social media marketing."},"userRating":{"courseId":7,"averageRating":5.00,"totalRating":1}},{"courseId":8,"title":"Personal Finance Essentials","description":"Learn how to manage your finances and make smart investments.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":25.00,"categoryId":8,"instructorId":3,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":8,"categoryName":"Finance","description":"Courses covering investment, personal finance, and accounting."},"userRating":{"courseId":8,"averageRating":4.00,"totalRating":1}},{"courseId":9,"title":"Yoga for Beginners","description":"Start your journey to physical and mental wellness with yoga.","price":99.99,"courseType":"Online","seatsAvailable":20,"duration":15.00,"categoryId":9,"instructorId":3,"startDate":"2024-11-01T00:00:00","endDate":"2024-11-15T00:00:00","thumbnail":null,"category":{"categoryId":9,"categoryName":"Health & Fitness","description":"Courses on physical fitness, mental well-being, and nutrition."},"userRating":{"courseId":9,"averageRating":5.00,"totalRating":1}},{"courseId":10,"title":"Full Stack Web Development","description":"Learn to build complete web applications using HTML, CSS, JavaScript, and backend technologies.","price":249.99,"courseType":"Online","seatsAvailable":75,"duration":60.00,"categoryId":1,"instructorId":1,"startDate":"2024-10-01T00:00:00","endDate":"2024-12-01T00:00:00","thumbnail":null,"category":{"categoryId":1,"categoryName":"Programming","description":"Courses related to software development and programming languages."},"userRating":{"courseId":10,"averageRating":0.00,"totalRating":0}},{"courseId":11,"title":"Advanced Data Science Techniques","description":"Dive deep into advanced techniques in data science, including deep learning and AI.","price":299.99,"courseType":"Online","seatsAvailable":50,"duration":45.00,"categoryId":2,"instructorId":1,"startDate":"2024-11-01T00:00:00","endDate":"2024-12-31T00:00:00","thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":11,"averageRating":0.00,"totalRating":0}},{"courseId":12,"title":"UI/UX Design Fundamentals","description":"Learn the essentials of user interface and user experience design.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":3,"instructorId":1,"startDate":"2024-10-15T00:00:00","endDate":"2024-11-15T00:00:00","thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":12,"averageRating":0.00,"totalRating":0}},{"courseId":13,"title":"Python for Data Analysis","description":"Learn how to use Python for data analysis, visualization, and statistical modeling.","price":159.99,"courseType":"Online","seatsAvailable":60,"duration":35.00,"categoryId":2,"instructorId":1,"startDate":"2024-09-15T00:00:00","endDate":"2024-10-15T00:00:00","thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":13,"averageRating":0.00,"totalRating":0}},{"courseId":14,"title":"Digital Marketing Masterclass","description":"Comprehensive guide to mastering digital marketing strategies.","price":199.99,"courseType":"Online","seatsAvailable":40,"duration":25.00,"categoryId":3,"instructorId":1,"startDate":"2024-12-01T00:00:00","endDate":"2024-12-31T00:00:00","thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":14,"averageRating":0.00,"totalRating":0}}]
+2025-02-27 21:33:34.164 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/api/Course - 200 null application/json; charset=utf-8 3400.75ms
+2025-02-27 21:33:35.061 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/api/Course - null null
+2025-02-27 21:33:35.071 +07:00 [INF] Request: GET /api/Course
+2025-02-27 21:33:35.082 +07:00 [INF] Executing endpoint 'OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API)'
+2025-02-27 21:33:35.089 +07:00 [INF] Route matched with {action = "GetAllCourses", controller = "Course"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[OnlineCourse.Core.Models.CourseModel]]] GetAllCoursesAsync() on controller OnlineCourse.API.Controllers.CourseController (OnlineCourse.API).
+2025-02-27 21:33:35.101 +07:00 [INF] Executing action method OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API) - Validation state: "Valid"
+2025-02-27 21:33:35.701 +07:00 [INF] Executed DbCommand (587ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CourseId], [c].[Title], [c].[Description], [c].[Price], [c].[CourseType], [c].[SeatsAvailable], [c].[Duration], [c].[CategoryId], [c].[InstructorId], [c].[StartDate], [c].[EndDate], [c0].[CategoryId], [c0].[CategoryName], [c0].[Description], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Review] AS [r]
+        WHERE [c].[CourseId] = [r].[CourseId]) THEN CONVERT(decimal(18, 2), (
+        SELECT AVG(CAST([r0].[Rating] AS float))
+        FROM [Review] AS [r0]
+        WHERE [c].[CourseId] = [r0].[CourseId]))
+    ELSE 0.0
+END AS [AverageRating], (
+    SELECT COUNT(*)
+    FROM [Review] AS [r1]
+    WHERE [c].[CourseId] = [r1].[CourseId]) AS [TotalRating]
+FROM [Course] AS [c]
+INNER JOIN [CourseCategory] AS [c0] ON [c].[CategoryId] = [c0].[CategoryId]
+2025-02-27 21:33:35.715 +07:00 [INF] Executed action method OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 608.7383ms.
+2025-02-27 21:33:35.725 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[OnlineCourse.Core.Models.CourseModel, OnlineCourse.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-27 21:33:35.733 +07:00 [INF] Executed action OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API) in 635.986ms
+2025-02-27 21:33:35.739 +07:00 [INF] Executed endpoint 'OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API)'
+2025-02-27 21:33:35.750 +07:00 [INF] Response: 200: [{"courseId":1,"title":"Angular Full Course","description":"Comprehensive course covering Angular from basics to advanced topics.","price":199.99,"courseType":"Online","seatsAvailable":50,"duration":40.50,"categoryId":1,"instructorId":1,"startDate":"2024-09-01T00:00:00","endDate":"2024-09-30T00:00:00","thumbnail":null,"category":{"categoryId":1,"categoryName":"Programming","description":"Courses related to software development and programming languages."},"userRating":{"courseId":1,"averageRating":5.00,"totalRating":1}},{"courseId":2,"title":"Introduction to Data Science","description":"Learn the fundamentals of data science with hands-on examples.","price":149.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":2,"instructorId":1,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":2,"averageRating":4.00,"totalRating":1}},{"courseId":3,"title":"Graphic Design Mastery","description":"Master the art of graphic design with practical projects.","price":129.99,"courseType":"Offline","seatsAvailable":null,"duration":25.00,"categoryId":3,"instructorId":1,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":3,"averageRating":5.00,"totalRating":1}},{"courseId":4,"title":"Full Stack Web Development","description":"Learn to build web applications from scratch using modern technologies.","price":249.99,"courseType":"Online","seatsAvailable":40,"duration":50.00,"categoryId":4,"instructorId":2,"startDate":"2024-10-01T00:00:00","endDate":"2024-11-30T00:00:00","thumbnail":null,"category":{"categoryId":4,"categoryName":"Web Development","description":"Courses focusing on front-end and back-end web development."},"userRating":{"courseId":4,"averageRating":5.00,"totalRating":1}},{"courseId":5,"title":"Ethical Hacking Basics","description":"Introduction to ethical hacking and cybersecurity fundamentals.","price":199.99,"courseType":"Online","seatsAvailable":35,"duration":40.00,"categoryId":5,"instructorId":2,"startDate":"2024-10-01T00:00:00","endDate":"2024-11-30T00:00:00","thumbnail":null,"category":{"categoryId":5,"categoryName":"Cybersecurity","description":"Courses covering security practices and ethical hacking."},"userRating":{"courseId":5,"averageRating":4.00,"totalRating":1}},{"courseId":6,"title":"Agile Project Management","description":"Master the principles of Agile and Scrum.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":6,"instructorId":2,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":6,"categoryName":"Project Management","description":"Courses on managing projects, teams, and resources effectively."},"userRating":{"courseId":6,"averageRating":5.00,"totalRating":1}},{"courseId":7,"title":"Digital Marketing Mastery","description":"Become an expert in digital marketing with this comprehensive course.","price":219.99,"courseType":"Online","seatsAvailable":30,"duration":35.00,"categoryId":7,"instructorId":3,"startDate":"2024-11-01T00:00:00","endDate":"2024-12-01T00:00:00","thumbnail":null,"category":{"categoryId":7,"categoryName":"Marketing","description":"Courses focused on digital marketing, SEO, and social media marketing."},"userRating":{"courseId":7,"averageRating":5.00,"totalRating":1}},{"courseId":8,"title":"Personal Finance Essentials","description":"Learn how to manage your finances and make smart investments.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":25.00,"categoryId":8,"instructorId":3,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":8,"categoryName":"Finance","description":"Courses covering investment, personal finance, and accounting."},"userRating":{"courseId":8,"averageRating":4.00,"totalRating":1}},{"courseId":9,"title":"Yoga for Beginners","description":"Start your journey to physical and mental wellness with yoga.","price":99.99,"courseType":"Online","seatsAvailable":20,"duration":15.00,"categoryId":9,"instructorId":3,"startDate":"2024-11-01T00:00:00","endDate":"2024-11-15T00:00:00","thumbnail":null,"category":{"categoryId":9,"categoryName":"Health & Fitness","description":"Courses on physical fitness, mental well-being, and nutrition."},"userRating":{"courseId":9,"averageRating":5.00,"totalRating":1}},{"courseId":10,"title":"Full Stack Web Development","description":"Learn to build complete web applications using HTML, CSS, JavaScript, and backend technologies.","price":249.99,"courseType":"Online","seatsAvailable":75,"duration":60.00,"categoryId":1,"instructorId":1,"startDate":"2024-10-01T00:00:00","endDate":"2024-12-01T00:00:00","thumbnail":null,"category":{"categoryId":1,"categoryName":"Programming","description":"Courses related to software development and programming languages."},"userRating":{"courseId":10,"averageRating":0.00,"totalRating":0}},{"courseId":11,"title":"Advanced Data Science Techniques","description":"Dive deep into advanced techniques in data science, including deep learning and AI.","price":299.99,"courseType":"Online","seatsAvailable":50,"duration":45.00,"categoryId":2,"instructorId":1,"startDate":"2024-11-01T00:00:00","endDate":"2024-12-31T00:00:00","thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":11,"averageRating":0.00,"totalRating":0}},{"courseId":12,"title":"UI/UX Design Fundamentals","description":"Learn the essentials of user interface and user experience design.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":3,"instructorId":1,"startDate":"2024-10-15T00:00:00","endDate":"2024-11-15T00:00:00","thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":12,"averageRating":0.00,"totalRating":0}},{"courseId":13,"title":"Python for Data Analysis","description":"Learn how to use Python for data analysis, visualization, and statistical modeling.","price":159.99,"courseType":"Online","seatsAvailable":60,"duration":35.00,"categoryId":2,"instructorId":1,"startDate":"2024-09-15T00:00:00","endDate":"2024-10-15T00:00:00","thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":13,"averageRating":0.00,"totalRating":0}},{"courseId":14,"title":"Digital Marketing Masterclass","description":"Comprehensive guide to mastering digital marketing strategies.","price":199.99,"courseType":"Online","seatsAvailable":40,"duration":25.00,"categoryId":3,"instructorId":1,"startDate":"2024-12-01T00:00:00","endDate":"2024-12-31T00:00:00","thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":14,"averageRating":0.00,"totalRating":0}}]
+2025-02-27 21:33:35.762 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/api/Course - 200 null application/json; charset=utf-8 701.1814ms
+2025-02-27 21:33:36.512 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/api/Course - null null
+2025-02-27 21:33:36.519 +07:00 [INF] Request: GET /api/Course
+2025-02-27 21:33:36.531 +07:00 [INF] Executing endpoint 'OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API)'
+2025-02-27 21:33:36.541 +07:00 [INF] Route matched with {action = "GetAllCourses", controller = "Course"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[OnlineCourse.Core.Models.CourseModel]]] GetAllCoursesAsync() on controller OnlineCourse.API.Controllers.CourseController (OnlineCourse.API).
+2025-02-27 21:33:36.553 +07:00 [INF] Executing action method OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API) - Validation state: "Valid"
+2025-02-27 21:33:37.195 +07:00 [INF] Executed DbCommand (635ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CourseId], [c].[Title], [c].[Description], [c].[Price], [c].[CourseType], [c].[SeatsAvailable], [c].[Duration], [c].[CategoryId], [c].[InstructorId], [c].[StartDate], [c].[EndDate], [c0].[CategoryId], [c0].[CategoryName], [c0].[Description], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Review] AS [r]
+        WHERE [c].[CourseId] = [r].[CourseId]) THEN CONVERT(decimal(18, 2), (
+        SELECT AVG(CAST([r0].[Rating] AS float))
+        FROM [Review] AS [r0]
+        WHERE [c].[CourseId] = [r0].[CourseId]))
+    ELSE 0.0
+END AS [AverageRating], (
+    SELECT COUNT(*)
+    FROM [Review] AS [r1]
+    WHERE [c].[CourseId] = [r1].[CourseId]) AS [TotalRating]
+FROM [Course] AS [c]
+INNER JOIN [CourseCategory] AS [c0] ON [c].[CategoryId] = [c0].[CategoryId]
+2025-02-27 21:33:37.275 +07:00 [INF] Executed action method OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 716.6795ms.
+2025-02-27 21:33:37.282 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[OnlineCourse.Core.Models.CourseModel, OnlineCourse.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-27 21:33:37.293 +07:00 [INF] Executed action OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API) in 743.5482ms
+2025-02-27 21:33:37.302 +07:00 [INF] Executed endpoint 'OnlineCourse.API.Controllers.CourseController.GetAllCoursesAsync (OnlineCourse.API)'
+2025-02-27 21:33:37.312 +07:00 [INF] Response: 200: [{"courseId":1,"title":"Angular Full Course","description":"Comprehensive course covering Angular from basics to advanced topics.","price":199.99,"courseType":"Online","seatsAvailable":50,"duration":40.50,"categoryId":1,"instructorId":1,"startDate":"2024-09-01T00:00:00","endDate":"2024-09-30T00:00:00","thumbnail":null,"category":{"categoryId":1,"categoryName":"Programming","description":"Courses related to software development and programming languages."},"userRating":{"courseId":1,"averageRating":5.00,"totalRating":1}},{"courseId":2,"title":"Introduction to Data Science","description":"Learn the fundamentals of data science with hands-on examples.","price":149.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":2,"instructorId":1,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":2,"averageRating":4.00,"totalRating":1}},{"courseId":3,"title":"Graphic Design Mastery","description":"Master the art of graphic design with practical projects.","price":129.99,"courseType":"Offline","seatsAvailable":null,"duration":25.00,"categoryId":3,"instructorId":1,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":3,"averageRating":5.00,"totalRating":1}},{"courseId":4,"title":"Full Stack Web Development","description":"Learn to build web applications from scratch using modern technologies.","price":249.99,"courseType":"Online","seatsAvailable":40,"duration":50.00,"categoryId":4,"instructorId":2,"startDate":"2024-10-01T00:00:00","endDate":"2024-11-30T00:00:00","thumbnail":null,"category":{"categoryId":4,"categoryName":"Web Development","description":"Courses focusing on front-end and back-end web development."},"userRating":{"courseId":4,"averageRating":5.00,"totalRating":1}},{"courseId":5,"title":"Ethical Hacking Basics","description":"Introduction to ethical hacking and cybersecurity fundamentals.","price":199.99,"courseType":"Online","seatsAvailable":35,"duration":40.00,"categoryId":5,"instructorId":2,"startDate":"2024-10-01T00:00:00","endDate":"2024-11-30T00:00:00","thumbnail":null,"category":{"categoryId":5,"categoryName":"Cybersecurity","description":"Courses covering security practices and ethical hacking."},"userRating":{"courseId":5,"averageRating":4.00,"totalRating":1}},{"courseId":6,"title":"Agile Project Management","description":"Master the principles of Agile and Scrum.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":6,"instructorId":2,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":6,"categoryName":"Project Management","description":"Courses on managing projects, teams, and resources effectively."},"userRating":{"courseId":6,"averageRating":5.00,"totalRating":1}},{"courseId":7,"title":"Digital Marketing Mastery","description":"Become an expert in digital marketing with this comprehensive course.","price":219.99,"courseType":"Online","seatsAvailable":30,"duration":35.00,"categoryId":7,"instructorId":3,"startDate":"2024-11-01T00:00:00","endDate":"2024-12-01T00:00:00","thumbnail":null,"category":{"categoryId":7,"categoryName":"Marketing","description":"Courses focused on digital marketing, SEO, and social media marketing."},"userRating":{"courseId":7,"averageRating":5.00,"totalRating":1}},{"courseId":8,"title":"Personal Finance Essentials","description":"Learn how to manage your finances and make smart investments.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":25.00,"categoryId":8,"instructorId":3,"startDate":null,"endDate":null,"thumbnail":null,"category":{"categoryId":8,"categoryName":"Finance","description":"Courses covering investment, personal finance, and accounting."},"userRating":{"courseId":8,"averageRating":4.00,"totalRating":1}},{"courseId":9,"title":"Yoga for Beginners","description":"Start your journey to physical and mental wellness with yoga.","price":99.99,"courseType":"Online","seatsAvailable":20,"duration":15.00,"categoryId":9,"instructorId":3,"startDate":"2024-11-01T00:00:00","endDate":"2024-11-15T00:00:00","thumbnail":null,"category":{"categoryId":9,"categoryName":"Health & Fitness","description":"Courses on physical fitness, mental well-being, and nutrition."},"userRating":{"courseId":9,"averageRating":5.00,"totalRating":1}},{"courseId":10,"title":"Full Stack Web Development","description":"Learn to build complete web applications using HTML, CSS, JavaScript, and backend technologies.","price":249.99,"courseType":"Online","seatsAvailable":75,"duration":60.00,"categoryId":1,"instructorId":1,"startDate":"2024-10-01T00:00:00","endDate":"2024-12-01T00:00:00","thumbnail":null,"category":{"categoryId":1,"categoryName":"Programming","description":"Courses related to software development and programming languages."},"userRating":{"courseId":10,"averageRating":0.00,"totalRating":0}},{"courseId":11,"title":"Advanced Data Science Techniques","description":"Dive deep into advanced techniques in data science, including deep learning and AI.","price":299.99,"courseType":"Online","seatsAvailable":50,"duration":45.00,"categoryId":2,"instructorId":1,"startDate":"2024-11-01T00:00:00","endDate":"2024-12-31T00:00:00","thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":11,"averageRating":0.00,"totalRating":0}},{"courseId":12,"title":"UI/UX Design Fundamentals","description":"Learn the essentials of user interface and user experience design.","price":179.99,"courseType":"Offline","seatsAvailable":null,"duration":30.00,"categoryId":3,"instructorId":1,"startDate":"2024-10-15T00:00:00","endDate":"2024-11-15T00:00:00","thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":12,"averageRating":0.00,"totalRating":0}},{"courseId":13,"title":"Python for Data Analysis","description":"Learn how to use Python for data analysis, visualization, and statistical modeling.","price":159.99,"courseType":"Online","seatsAvailable":60,"duration":35.00,"categoryId":2,"instructorId":1,"startDate":"2024-09-15T00:00:00","endDate":"2024-10-15T00:00:00","thumbnail":null,"category":{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},"userRating":{"courseId":13,"averageRating":0.00,"totalRating":0}},{"courseId":14,"title":"Digital Marketing Masterclass","description":"Comprehensive guide to mastering digital marketing strategies.","price":199.99,"courseType":"Online","seatsAvailable":40,"duration":25.00,"categoryId":3,"instructorId":1,"startDate":"2024-12-01T00:00:00","endDate":"2024-12-31T00:00:00","thumbnail":null,"category":{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},"userRating":{"courseId":14,"averageRating":0.00,"totalRating":0}}]
+2025-02-27 21:33:37.325 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/api/Course - 200 null application/json; charset=utf-8 813.6594ms
+2025-02-27 21:33:45.205 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/api/CourseCategory - null null
+2025-02-27 21:33:45.215 +07:00 [INF] Request: GET /api/CourseCategory
+2025-02-27 21:33:45.226 +07:00 [INF] Executing endpoint 'OnlineCourse.API.Controllers.CourseCategoryController.GetAll (OnlineCourse.API)'
+2025-02-27 21:33:45.240 +07:00 [INF] Route matched with {action = "GetAll", controller = "CourseCategory"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller OnlineCourse.API.Controllers.CourseCategoryController (OnlineCourse.API).
+2025-02-27 21:33:45.248 +07:00 [INF] Executing action method OnlineCourse.API.Controllers.CourseCategoryController.GetAll (OnlineCourse.API) - Validation state: "Valid"
+2025-02-27 21:33:45.562 +07:00 [INF] Executed DbCommand (272ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [CourseCategory] AS [c]
+2025-02-27 21:33:45.610 +07:00 [INF] Executed action method OnlineCourse.API.Controllers.CourseCategoryController.GetAll (OnlineCourse.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 357.3965ms.
+2025-02-27 21:33:45.647 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[OnlineCourse.Core.Models.CourseCategoryModel, OnlineCourse.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-27 21:33:45.662 +07:00 [INF] Executed action OnlineCourse.API.Controllers.CourseCategoryController.GetAll (OnlineCourse.API) in 415.3112ms
+2025-02-27 21:33:45.711 +07:00 [INF] Executed endpoint 'OnlineCourse.API.Controllers.CourseCategoryController.GetAll (OnlineCourse.API)'
+2025-02-27 21:33:45.725 +07:00 [INF] Response: 200: [{"categoryId":1,"categoryName":"Programming","description":"Courses related to software development and programming languages."},{"categoryId":2,"categoryName":"Data Science","description":"Courses covering data analysis, machine learning, and AI."},{"categoryId":3,"categoryName":"Design","description":"Courses related to graphic design, UX/UI, and creative fields."},{"categoryId":4,"categoryName":"Web Development","description":"Courses focusing on front-end and back-end web development."},{"categoryId":5,"categoryName":"Cybersecurity","description":"Courses covering security practices and ethical hacking."},{"categoryId":6,"categoryName":"Project Management","description":"Courses on managing projects, teams, and resources effectively."},{"categoryId":7,"categoryName":"Marketing","description":"Courses focused on digital marketing, SEO, and social media marketing."},{"categoryId":8,"categoryName":"Finance","description":"Courses covering investment, personal finance, and accounting."},{"categoryId":9,"categoryName":"Health & Fitness","description":"Courses on physical fitness, mental well-being, and nutrition."}]
+2025-02-27 21:33:45.733 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/api/CourseCategory - 200 null application/json; charset=utf-8 527.8341ms
+2025-02-27 21:35:43.001 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 21:35:43.059 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 21:35:43.117 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 21:35:43.130 +07:00 [INF] Hosting environment: Development
+2025-02-27 21:35:43.136 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 21:35:44.337 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 21:35:44.512 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 21:35:44.662 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:35:44.795 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:35:45.069 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_5>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 100
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 21:35:45.233 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:35:45.327 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:35:45.503 +07:00 [ERR] Connection id "0HNAN7G21FPR7", Request id "0HNAN7G21FPR7:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 21:35:45.618 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 1289.7588ms
+2025-02-27 21:36:16.508 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 21:36:16.560 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 21:36:16.621 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 21:36:16.627 +07:00 [INF] Hosting environment: Development
+2025-02-27 21:36:16.632 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 21:36:17.799 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 21:36:17.898 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 21:36:17.946 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:36:17.988 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:36:18.028 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_5>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 100
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 21:36:18.039 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:36:18.069 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:36:18.081 +07:00 [ERR] Connection id "0HNAN7GBVRV23", Request id "0HNAN7GBVRV23:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 21:36:18.096 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 315.4168ms
+2025-02-27 21:40:32.723 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 21:40:32.795 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 21:40:32.850 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 21:40:32.856 +07:00 [INF] Hosting environment: Development
+2025-02-27 21:40:32.861 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 21:40:33.547 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 21:40:33.631 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 21:40:33.714 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:40:33.784 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:40:33.845 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_4>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 101
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 21:40:33.859 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:40:33.899 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:40:33.917 +07:00 [ERR] Connection id "0HNAN7IO9BTR9", Request id "0HNAN7IO9BTR9:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 21:40:33.936 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 406.447ms
+2025-02-27 21:46:10.587 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 21:46:10.657 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 21:46:10.718 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 21:46:10.725 +07:00 [INF] Hosting environment: Development
+2025-02-27 21:46:10.731 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 21:46:11.977 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 21:46:12.057 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 21:46:12.120 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:46:12.163 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:46:12.205 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_4>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 92
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 21:46:12.214 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:46:12.259 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:46:12.273 +07:00 [ERR] Connection id "0HNAN7LT2C7CS", Request id "0HNAN7LT2C7CS:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 21:46:12.289 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 328.5855ms
+2025-02-27 21:46:34.438 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 21:46:34.550 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 21:46:34.613 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 21:46:34.621 +07:00 [INF] Hosting environment: Development
+2025-02-27 21:46:34.630 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 21:46:35.391 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 21:46:35.542 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 21:46:35.610 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:46:35.655 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:46:35.701 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_5>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 92
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 21:46:35.712 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:46:35.748 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:46:35.761 +07:00 [ERR] Connection id "0HNAN7M41J7UA", Request id "0HNAN7M41J7UA:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 21:46:35.790 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 415.6684ms
+2025-02-27 21:53:45.122 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 21:53:45.232 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 21:53:45.393 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 21:53:45.403 +07:00 [INF] Hosting environment: Development
+2025-02-27 21:53:45.412 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 21:53:45.844 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 21:53:45.970 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 21:53:46.046 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:53:46.087 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:53:46.172 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_6>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 103
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 21:53:46.200 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:53:46.262 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:53:46.281 +07:00 [ERR] Connection id "0HNAN7Q4DEDQU", Request id "0HNAN7Q4DEDQU:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 21:53:46.304 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 476.3193ms
+2025-02-27 21:56:28.775 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 21:56:28.838 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 21:56:28.905 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 21:56:28.912 +07:00 [INF] Hosting environment: Development
+2025-02-27 21:56:28.921 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 21:56:29.999 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 21:56:30.119 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 21:56:30.198 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:56:30.240 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 21:56:30.329 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_6>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 105
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 21:56:30.339 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:56:30.375 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 21:56:30.389 +07:00 [ERR] Connection id "0HNAN7RL8Q8R2", Request id "0HNAN7RL8Q8R2:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Midddlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Midddlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Midddlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 21:56:30.404 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 421.5266ms
+2025-02-27 22:01:30.597 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 22:01:30.702 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 22:01:30.759 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 22:01:30.842 +07:00 [INF] Hosting environment: Development
+2025-02-27 22:01:30.865 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 22:01:31.473 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 22:01:31.554 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 22:01:31.601 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 22:01:31.632 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 22:01:31.665 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_6>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 105
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 22:01:31.674 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 22:01:31.728 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 22:01:31.741 +07:00 [ERR] Connection id "0HNAN7UF5ACM1", Request id "0HNAN7UF5ACM1:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 22:01:31.758 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 298.5713ms
+2025-02-27 22:03:38.148 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 22:03:38.206 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 22:03:38.279 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 22:03:38.285 +07:00 [INF] Hosting environment: Development
+2025-02-27 22:03:38.315 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 22:03:38.819 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 22:03:38.885 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 22:03:38.932 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 22:03:38.977 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 22:03:39.016 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_6>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 105
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 22:03:39.028 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 22:03:39.057 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 22:03:39.080 +07:00 [ERR] Connection id "0HNAN7VL54TCE", Request id "0HNAN7VL54TCE:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 22:03:39.105 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 294.4217ms
+2025-02-27 22:05:59.873 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 22:05:59.941 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 22:06:00.005 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 22:06:00.011 +07:00 [INF] Hosting environment: Development
+2025-02-27 22:06:00.017 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 22:06:01.004 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 22:06:01.109 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 22:06:01.184 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 22:06:01.222 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 22:06:01.268 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_6>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 106
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 22:06:01.283 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 22:06:01.325 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 22:06:01.344 +07:00 [ERR] Connection id "0HNAN80VEKDCV", Request id "0HNAN80VEKDCV:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 22:06:01.373 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 390.2357ms
+2025-02-27 22:06:26.099 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 22:06:26.185 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 22:06:26.301 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 22:06:26.309 +07:00 [INF] Hosting environment: Development
+2025-02-27 22:06:26.316 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 22:06:27.428 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 22:06:27.502 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 22:06:27.551 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 22:06:27.585 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 22:06:27.626 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_6>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 106
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 22:06:27.687 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 22:06:27.722 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 22:06:27.736 +07:00 [ERR] Connection id "0HNAN8179PCB6", Request id "0HNAN8179PCB6:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 22:06:27.841 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 423.6361ms
+2025-02-27 22:06:32.403 +07:00 [INF] Now listening on: https://localhost:7051
+2025-02-27 22:06:32.465 +07:00 [INF] Now listening on: http://localhost:5024
+2025-02-27 22:06:32.512 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-27 22:06:32.517 +07:00 [INF] Hosting environment: Development
+2025-02-27 22:06:32.522 +07:00 [INF] Content root path: D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API
+2025-02-27 22:06:33.251 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7051/swagger/index.html - null null
+2025-02-27 22:06:33.349 +07:00 [INF] Request: GET /swagger/index.html
+2025-02-27 22:06:33.396 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 22:06:33.416 +07:00 [ERR] Unhandled exception occurred. System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-02-27 22:06:33.454 +07:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.ObjectDisposedException: Cannot access a closed Stream.
+   at System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.MemoryStream.WriteAsync(ReadOnlyMemory`1 buffer, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at System.IO.Pipelines.StreamPipeWriter.FlushAsyncInternal(Boolean writeToStream, ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask`1.GetTaskForValueTaskSource(IValueTaskSource`1 t)
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Program.<>c.<<Main>b__0_6>d.MoveNext() in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Program.cs:line 106
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2025-02-27 22:06:33.464 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 22:06:33.495 +07:00 [ERR] An exception was thrown attempting to display the error page.
+System.ObjectDisposedException: Cannot access a closed Stream.
+Object name: 'MemoryStream'.
+   at System.IO.Stream.ValidateCopyToArguments(Stream destination, Int32 bufferSize)
+   at System.IO.MemoryStream.CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
+   at System.IO.Stream.CopyToAsync(Stream destination)
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-27 22:06:33.506 +07:00 [ERR] Connection id "0HNAN81924KOS", Request id "0HNAN81924KOS:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: No service for type 'OnlineCourse.API.Middlewares.RequestBodyLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at OnlineCourse.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in D:\CSharp\OnlineCourse\OnlineCourse.API\OnlineCourse.API\Middlewares\RequestResponseLoggingMiddleware.cs:line 31
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2025-02-27 22:06:33.522 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7051/swagger/index.html - 500 0 null 292.5091ms
